@@ -4,7 +4,12 @@ library(shiny)
 library(readxl)
 
 ui = fluidPage(
-  titlePanel("Linear Regression"),
+  h1("Linear Regression Analysis"),
+  p(style = "font-family: Impact", "See oterh apps and codes in",
+    a("Lei's GitHub", 
+      href = "https://github.com/fang-lei/R-Shiny-App")),
+  tags$hr(),
+  titlePanel("Model Setting"),
   sidebarLayout(
     sidebarPanel(
       fileInput(inputId = 'file1', 
@@ -42,7 +47,7 @@ server <- function(input, output) {
     read_excel(paste(inFile$datapath, ".xlsx", sep = ""), sheet = 1)
   })
   data = eventReactive(eventExpr = input$go,
-               valueExpr = {})
+               valueExpr = {read_excel(paste(inFile$datapath, ".xlsx", sep = ""), sheet = 1)})
   
 }
 
