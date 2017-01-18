@@ -3,7 +3,12 @@
 library(shiny)
 
 ui = fluidPage(
-  headerPanel("Lee-Carter Model for death rates"),
+  h1("Lee-Carter Model for death rates"),
+  p(style = "font-family: Impact", "See oterh apps and codes in",
+    a("Lei's GitHub", 
+      href = "https://github.com/fang-lei/R-Shiny-App")),
+  tags$hr(),
+  headerPanel("Model Setting"),
   selectInput(inputId = "country",
               label = "Choose a country",
               choices = c("Austrilia" = "AUS",
