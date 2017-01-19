@@ -33,7 +33,7 @@ ui = fluidPage(
       helpText("This App employs ordinary least squares (OLS) to fit a linear 
                regression to the data set you upload. The data must be stored in 
                Excel file with header, and varible y is stored in the first column 
-               while x is the second one.")
+               while x is sorted ascendingly in the second column.")
       
     ),
         
@@ -61,7 +61,8 @@ server <- function(input, output) {
   
   output$estimation = renderPlot({
     pred.clm = predict(lm(data()[,1] ~ data()[,2]), interval = "confidence", level = input$ci/100)
-    matplot(data()[,2], pred.clm, lty = c(1,2), type = "l", xlab = names(data())[2], ylab = names(data())[1])
+    matplot(data()[,2], pred.clm, lty = 1, type = "l", col = c(1,2,2), xlab = names(data())[2], ylab = names(data())[1])
+    lines(data()[,2],data()[,1], col = "blue")
   })
   
   output$parameters_estimation = renderPrint({
